@@ -14,18 +14,17 @@ def add_task(request):
     return render(request, 'add_task.html', {'form' : task_form})
 
 def edit_task(request, id):
-    tasks = models.Task.objects.all(pk=id)
+    tasks = models.Task.objects.get(pk=id)
     task_form = forms.TaskForm(instance=tasks)
     if request.method == 'POST':
         task_form = forms.TaskForm(request.POST, instance=tasks)
         if task_form.is_valid():
             task_form.save() 
-            return redirect('home') 
-    else:
-        task_form = forms.TaskForm(instance=tasks)
+            return redirect('homepage') 
+        
     return render(request, 'add_task.html', {'form' : task_form})
 
 def delete_task(request, id):
     tasks = models.Task.objects.get(pk=id)
     tasks.delete()
-    return redirect('home')
+    return redirect('homepage')

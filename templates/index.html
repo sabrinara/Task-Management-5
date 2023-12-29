@@ -9,9 +9,8 @@
         <h5 class="card-title">{{task.title}}</h5>
         <p class="card-text">{{task.description}}</p>
         <p>
-          Category : {% for cat in task.category_set.all %} 
+          Category : {% for cat in task.category.all %} 
           <button class="btn btn-primary btn-sm m-2" disabled >{{cat.name}} </button>
-          {% if not forloop.last %}, {% endif %}
           {% endfor %}
         </p>
         <p>Assign Date : {{task.assign_date}}</p>
